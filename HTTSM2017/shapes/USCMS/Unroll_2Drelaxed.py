@@ -67,7 +67,7 @@ c=ROOT.TCanvas("canvas","",0,0,1800,600)
 c.cd()
 
 file=ROOT.TFile("final_nominal.root","r")
-file1D=ROOT.TFile("final_tautau_1D.root","recreate")
+file1D=ROOT.TFile("htt_tt.inputs-sm-13TeV-2D.root","recreate")
 
 adapt=ROOT.gROOT.GetColor(12)
 new_idx=ROOT.gROOT.GetListOfColors().GetSize() + 1
