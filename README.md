@@ -13,7 +13,7 @@ A new full release area can be set up and compiled in the following steps:
     cd CMSSW_8_1_0/src
     cmsenv
     git clone https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit
-    git clone https://github.com/senka/HTT_20162017.git .
+    git clone https://github.com/senka/HTT_20162017.git CombineHarvester
     scram b
 
 
