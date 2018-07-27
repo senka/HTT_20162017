@@ -19,7 +19,7 @@ A new full release area can be set up and compiled in the following steps:
 
 Now run the limits:
 
-    # unroll 2D histos into 1D unrolled histos (input file: "final_nominal.root", output file: "final_tautau_1D.root")
+    # unroll 2D histos into 1D unrolled histos (input file: "final_nominal.root", output file: "final_tautau_1D.root" used as input for the limits!)
     cd CombineHarvester/HTTSM2017/shapes/USCMS/
     python Unroll_2Drelaxed.py
 
