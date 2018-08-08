@@ -179,19 +179,31 @@ namespace ch {
         // This CR segment is temporary, just to check that the CRs work (needed to use old DCS
         // without scale_t on all shapes)
         // FIXME
-//        if (control_region == 1) {
-//            cb.cp().process(JoinStr({sig_procs, {"ZTT","TTT","VV","VVT","EWKZ"}})).channel({"et","mt","tt"}).AddSyst(cb,
-//                                             "CMS_scale_t_$CHANNEL_$ERA", "shape", SystMap<>::init(1.00));
-//        }
-//        else {
-//            cb.cp().process(JoinStr({sig_procs, all_mc_bkgs})).channel({"et","mt","tt"}).AddSyst(cb,
-//                                             "CMS_scale_t_$CHANNEL_$ERA", "shape", SystMap<>::init(1.00));
-//        }
-
+        /*
+        if (control_region == 1) {
+            cb.cp().process(JoinStr({sig_procs, {"ZTT","TTT","VV","VVT","EWKZ"}})).channel({"et","mt","tt"}).AddSyst(cb,
+                                             "CMS_scale_t_$CHANNEL_$ERA", "shape", SystMap<>::init(1.00));
+        }
+        else {
+            cb.cp().process(JoinStr({sig_procs, all_mc_bkgs})).channel({"et","mt","tt"}).AddSyst(cb,
+                                             "CMS_scale_t_$CHANNEL_$ERA", "shape", SystMap<>::init(1.00));
+        }
+*/
+// Doyeong naming:
+/*
+        if (control_region == 1) {
+            cb.cp().process(JoinStr({sig_procs, {"ZTT","TTT","VV","VVT","EWKZ"}})).channel({"et","mt","tt"}).AddSyst(cb,
+                                             "CMS_scale_t_$ERA", "shape", SystMap<>::init(1.00));
+        }
+        else {
+            cb.cp().process(JoinStr({sig_procs, all_mc_bkgs})).channel({"et","mt","tt"}).AddSyst(cb,
+                                             "CMS_scale_t_$ERA", "shape", SystMap<>::init(1.00));
+        }
+*/
 
         // Decay Mode based TES Settings
         
-/* AM
+
 	cb.cp().process(JoinStr({sig_procs, all_mc_bkgs})).channel({"et","mt","tt"}).AddSyst(cb,
                                                   "CMS_scale_t_1prong_$ERA", "shape", SystMap<>::init(1.00));
         cb.cp().process(JoinStr({sig_procs, all_mc_bkgs})).channel({"et","mt","tt"}).AddSyst(cb,
@@ -199,19 +211,19 @@ namespace ch {
         cb.cp().process(JoinStr({sig_procs, all_mc_bkgs})).channel({"et","mt","tt"}).AddSyst(cb,
                                                   "CMS_scale_t_3prong_$ERA", "shape", SystMap<>::init(1.00));
         
-*/
+
         //##############################################################################
         //  jet and met energy Scale
         //##############################################################################
  
         // MET Systematic shapes
-/* AM  
-      cb.cp().process(JoinStr({sig_procs, all_mc_bkgs})).channel({"et","mt","tt","em"}).bin_id({1,2,3}).AddSyst(cb,
-                                                  "CMS_scale_met_clustered_$ERA", "shape", SystMap<>::init(1.00));
+ 
+      //cb.cp().process(JoinStr({sig_procs, all_mc_bkgs})).channel({"et","mt","tt","em"}).bin_id({1,2,3}).AddSyst(cb,
+        //                                          "CMS_scale_met_clustered_$ERA", "shape", SystMap<>::init(1.00));
         cb.cp().process(JoinStr({sig_procs, all_mc_bkgs})).channel({"et","mt","tt","em"}).bin_id({1,2,3}).AddSyst(cb,
                                                   "CMS_scale_met_unclustered_$ERA", "shape", SystMap<>::init(1.00));
         
-     */   
+        
         // Standard JES, factorized 27 JES implementation below
         // only use 1 at a time.
         // full 27 JES...
