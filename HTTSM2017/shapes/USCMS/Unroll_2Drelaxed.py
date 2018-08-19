@@ -76,9 +76,25 @@ trans=ROOT.TColor(new_idx, adapt.GetRed(), adapt.GetGreen(),adapt.GetBlue(), "",
 categories=["tt_0jet","tt_boosted","tt_vbf"] # input dir names
 cat=["tt_0jet","tt_boosted","tt_vbf"] # outout dir names
 processes=["data_obs","ZTT","W","QCD","ZL","ZJ","TTT","TTJ","VVT","VVJ","EWKZ","ggH125","VBF125","WH125","ZH125"] # input histos
+<<<<<<< HEAD
+
+systematics=[ # systematics
+    "_CMS_htt_dyShape_13TeV",
+    "_CMS_htt_jetToTauFake_13TeV",
+    "_CMS_htt_ttbarShape_13TeV",
+    "_CMS_scale_t_13TeV",
+    "_CMS_scale_t_1prong_13TeV",
+    "_CMS_scale_t_1prong1pizero_13TeV",
+    "_CMS_scale_t_3prong_13TeV",
+    "_CMS_scale_met_unclustered_13TeV",
+    "_CMS_scale_met_clustered_13TeV"
+    "_CMS_scale_j_13TeV",
+    "_CMS_htt_zmumuShape_VBF_13TeV"
+=======
 systematics=[ # systematics
     "_CMS_scale_met_unclustered_13TeV",
     "_CMS_htt_dyShape_13TeV"
+>>>>>>> 01c8b3388e137d7465ad0d27532292977a713bc8
              ]
 processes_plot_bkg=["ZTT","W","QCD","ZL","ZJ","TTT","TTJ","VVT","VVJ","EWKZ"] # bkg processes for plot
 processes_plot_signal=["ggH125","VBF125"] # signal processes for plot
