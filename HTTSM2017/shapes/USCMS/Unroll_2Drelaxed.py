@@ -87,14 +87,14 @@ systematics=[ # systematics
     "_CMS_scale_t_1prong1pizero_13TeV",
     "_CMS_scale_t_3prong_13TeV",
     "_CMS_scale_met_unclustered_13TeV",
-    "_CMS_scale_met_clustered_13TeV"
+    "_CMS_scale_met_clustered_13TeV",
     "_CMS_scale_j_13TeV",
     "_CMS_htt_zmumuShape_VBF_13TeV"
     ]
 
 
 processes_plot_bkg=["ZTT","W","QCD","ZL","ZJ","TTT","TTJ","VVT","VVJ","EWKZ"] # bkg processes for plot
-processes_plot_signal=["ggH125","VBF125"] # signal processes for plot
+processes_plot_signal=["ggH125","VBF125",] # signal processes for plot
 ncat=3
 
 for i in range (0,ncat): # loop over categories
@@ -127,7 +127,6 @@ for i in range (0,ncat): # loop over categories
                 histo_u=ROOT.TH1F("histo_u",histo2D_u.GetName(),nx*ny,0,nx*ny) #
                 histo_d.SetName(histo2D_d.GetName()) #
                 histo_u.SetName(histo2D_u.GetName()) #
-
                 l=0
                 for j in range(1,nx+1):
                     for k in range(1,ny+1):
@@ -139,5 +138,7 @@ for i in range (0,ncat): # loop over categories
                         histo_d.SetBinError(l,histo2D_d.GetBinError(n)) #
                 histo_u.Write() #
                 histo_d.Write() #           
+            #else :
+            #    print i_histo+systematic+"Down/Up fail"
 
 # now make nice unrolled plots:
