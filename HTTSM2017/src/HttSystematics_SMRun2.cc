@@ -250,7 +250,8 @@ namespace ch {
     cb.cp().process({"VV","VVT","VVJ","VVJ_rest"}).AddSyst(cb,"CMS_htt_vvXsec_13TeV", "lnN", SystMap<>::init(1.05));
     if (! ttbar_fit){
       //   ttbar Normalisation - fully correlated
-      cb.cp().process({"TT","TTT","TTJ","TTJ_rest"}).AddSyst(cb,"CMS_htt_tjXsec_13TeV", "lnN", SystMap<>::init(1.06));}
+      //cb.cp().process({"TT","TTT","TTJ","TTJ_rest"}).AddSyst(cb,"CMS_htt_tjXsec_13TeV", "lnN", SystMap<>::init(1.06));
+    }
 
     // W norm, just for em, tt and the mm region where MC norm is from MC
     //        cb.cp().process({"W","W_rest"}).channel({"tt","em","mm"}).AddSyst(cb,
