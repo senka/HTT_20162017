@@ -76,6 +76,20 @@ trans=ROOT.TColor(new_idx, adapt.GetRed(), adapt.GetGreen(),adapt.GetBlue(), "",
 categories=["tt_0jet","tt_boosted","tt_vbf"] # input dir names
 cat=["tt_0jet","tt_boosted","tt_vbf"] # outout dir names
 processes=["data_obs","ZTT","W","QCD","ZL","ZJ","TTT","TTJ","VVT","VVJ","EWKZ","ggH125","VBF125","WH125","ZH125"] # input histos
+
+systematics=[ # systematics
+    "_CMS_htt_dyShape_13TeV",
+    "_CMS_htt_jetToTauFake_13TeV",
+    "_CMS_htt_ttbarShape_13TeV",
+    "_CMS_scale_t_13TeV",
+    "_CMS_scale_t_1prong_13TeV",
+    "_CMS_scale_t_1prong1pizero_13TeV",
+    "_CMS_scale_t_3prong_13TeV",
+    "_CMS_scale_met_unclustered_13TeV",
+    "_CMS_scale_met_clustered_13TeV"
+    "_CMS_scale_j_13TeV",
+    "_CMS_htt_zmumuShape_VBF_13TeV"
+             ]
 processes_plot_bkg=["ZTT","W","QCD","ZL","ZJ","TTT","TTJ","VVT","VVJ","EWKZ"] # bkg processes for plot
 processes_plot_signal=["ggH125","VBF125"] # signal processes for plot
 ncat=3
@@ -87,21 +101,10 @@ for i in range (0,ncat): # loop over categories
     for i_histo in processes: # loop over input histos (processes)
         print " histo: ", i_histo
         histo2D=file.Get(categories[i]).Get(i_histo)
-        histo2D_d=file.Get(categories[i]).Get(i_histo)
-        histo2D_u=file.Get(categories[i]).Get(i_histo)
-
         nx=histo2D.GetXaxis().GetNbins()
         ny=histo2D.GetYaxis().GetNbins()
-
-        histo=ROOT.TH1F("histo","histo",nx*ny,0,nx*ny)
-        histo_u=ROOT.TH1F("histo_u","histo_u",nx*ny,0,nx*ny)
-        histo_d=ROOT.TH1F("histo_d","histo_d",nx*ny,0,nx*ny)
-
+        histo=ROOT.TH1F("histo",histo2D.GetName(),nx*ny,0,nx*ny)
         histo.SetName(histo2D.GetName())
-        histo_u.SetName(histo2D_u.GetName())
-        histo_d.SetName(histo2D_d.GetName())
-        
-        
         l=0
         for j in range(1,nx+1):
             for k in range(1,ny+1):
@@ -109,14 +112,29 @@ for i in range (0,ncat): # loop over categories
                 n = histo2D.GetBin(j,k);
                 histo.SetBinContent(l,histo2D.GetBinContent(n))
                 histo.SetBinError(l,histo2D.GetBinError(n))
-                histo_u.SetBinContent(l,histo2D_u.GetBinContent(n))
-                histo_u.SetBinError(l,histo2D_u.GetBinError(n))
-                histo_d.SetBinContent(l,histo2D_d.GetBinContent(n))
-                histo_d.SetBinError(l,histo2D_d.GetBinError(n))
-
         mydir.cd()
         histo.Write()
-        histo_u.Write()
-        histo_d.Write()            
+
+        for systematic in systematics : # loop over available systematics
+            if file.Get(categories[i]).Get(i_histo+systematic+"Down") != None:
+                print i_histo+systematic+"Down/Up"
+                histo2D_d=file.Get(categories[i]).Get(i_histo+systematic+"Down") #
+                histo2D_u=file.Get(categories[i]).Get(i_histo+systematic+"Up") #
+                histo_d=ROOT.TH1F("histo_d",histo2D_d.GetName(),nx*ny,0,nx*ny) #
+                histo_u=ROOT.TH1F("histo_u",histo2D_u.GetName(),nx*ny,0,nx*ny) #
+                histo_d.SetName(histo2D_d.GetName()) #
+                histo_u.SetName(histo2D_u.GetName()) #
+
+                l=0
+                for j in range(1,nx+1):
+                    for k in range(1,ny+1):
+                        l=l+1
+                        n = histo2D.GetBin(j,k);
+                        histo_u.SetBinContent(l,histo2D_u.GetBinContent(n)) #
+                        histo_u.SetBinError(l,histo2D_u.GetBinError(n)) #
+                        histo_d.SetBinContent(l,histo2D_d.GetBinContent(n)) #
+                        histo_d.SetBinError(l,histo2D_d.GetBinError(n)) #
+                histo_u.Write() #
+                histo_d.Write() #           
 
 # now make nice unrolled plots:
