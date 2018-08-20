@@ -182,7 +182,7 @@ namespace ch {
         }
     */
 
-    // Decay Mode based TES Settings  // D.Kim
+    // Decay Mode based TES Settings 
     cb.cp().process(JoinStr({sig_procs, all_mc_bkgs})).channel({"et","mt","tt"}).AddSyst(cb,"CMS_scale_t_1prong_$ERA", "shape", SystMap<>::init(1.00));
     cb.cp().process(JoinStr({sig_procs, all_mc_bkgs})).channel({"et","mt","tt"}).AddSyst(cb,"CMS_scale_t_1prong1pizero_$ERA", "shape", SystMap<>::init(1.00));
     cb.cp().process(JoinStr({sig_procs, all_mc_bkgs})).channel({"et","mt","tt"}).AddSyst(cb,"CMS_scale_t_3prong_$ERA", "shape", SystMap<>::init(1.00));
@@ -213,7 +213,7 @@ namespace ch {
 //            cb.cp().process(JoinStr({sig_procs, all_mc_bkgs, {"QCD"}})).bin_id({1,2,3}).channel({"em"}).AddSyst(cb,
 //                                           "CMS_scale_j_"+uncert+"_$ERA", "shape", SystMap<>::init(1.00));
 //        }
-
+    
 
 //        cb.cp().AddSyst(cb,
 //                        "CMS_htt_scale_met_$ERA", "lnN", SystMap<channel, bin_id, process>::init
@@ -302,25 +302,18 @@ namespace ch {
     //##############################################################################
     //  DY LO->NLO reweighting, Between no and twice the correc(on.
     //##############################################################################
-       
-    /* 
-        cb.cp().process( {"ZTT","ZJ","ZL","ZJ_rest"}).channel({"et","mt","tt"}).AddSyst(cb,
-                                             "CMS_htt_dyShape_$ERA", "shape", SystMap<>::init(1.00));
-        cb.cp().process( {"ZTT","ZL"}).channel({"em"}).AddSyst(cb,
-                                             "CMS_htt_dyShape_$ERA", "shape", SystMap<>::init(1.00));
+    cb.cp().process( {"ZTT","ZJ","ZL","ZJ_rest"}).channel({"et","mt","tt"}).AddSyst(cb,"CMS_htt_dyShape_$ERA", "shape", SystMap<>::init(1.00));
+    //cb.cp().process( {"ZTT","ZL"}).channel({"em"}).AddSyst(cb,"CMS_htt_dyShape_$ERA", "shape", SystMap<>::init(1.00));
         
-    */      
+
     //##############################################################################
     // Ttbar shape reweighting, Between no and twice the correction
     //##############################################################################
-    /* AM 
-        cb.cp().process( {"TTJ","TTT","TTJ_rest"}).channel({"tt"}).AddSyst(cb,
-                                        "CMS_htt_ttbarShape_$ERA", "shape", SystMap<>::init(1.00));
-        cb.cp().process( {"TTJ","TTT"}).channel({"et","mt"}).AddSyst(cb,
-                                        "CMS_htt_ttbarShape_$ERA", "shape", SystMap<>::init(1.00));
-        cb.cp().process( {"TT"}).channel({"em"}).AddSyst(cb,
-                                        "CMS_htt_ttbarShape_$ERA", "shape", SystMap<>::init(1.00));
-    */
+
+    cb.cp().process( {"TTJ","TTT","TTJ_rest"}).channel({"tt"}).AddSyst(cb,"CMS_htt_ttbarShape_$ERA", "shape", SystMap<>::init(1.00));
+    //cb.cp().process( {"TTJ","TTT"}).channel({"et","mt"}).AddSyst(cb,"CMS_htt_ttbarShape_$ERA", "shape", SystMap<>::init(1.00));
+    //cb.cp().process( {"TT"}).channel({"em"}).AddSyst(cb,"CMS_htt_ttbarShape_$ERA", "shape", SystMap<>::init(1.00));
+
     //##############################################################################
     // ZL shape  and electron/muon  to tau fake only in  mt and et channels (updated March 22)
     //##############################################################################
@@ -365,14 +358,9 @@ namespace ch {
     //##############################################################################
     // jet  to tau fake only in tt, mt and et channels
     //##############################################################################
-    /* AM
-        cb.cp().process( {"TTJ","ZJ","VVJ","W_rest","ZJ_rest","TTJ_rest","VVJ_rest"}).channel({"tt","mt","et"}).AddSyst(cb,
-                                                                            "CMS_htt_jetToTauFake_$ERA", "shape", SystMap<>::init(1.00));
-        
-        cb.cp().process( {"W"}).channel({"tt","mt","et"}).bin_id({1,2,3,13,14,15}).AddSyst(cb,
-                                                                "CMS_htt_jetToTauFake_$ERA", "shape", SystMap<>::init(1.00));
-        
-    */
+    cb.cp().process( {"TTJ","ZJ","VVJ","W","W_rest","ZJ_rest","TTJ_rest","VVJ_rest"}).channel({"tt","mt","et"}).AddSyst(cb,"CMS_htt_jetToTauFake_$ERA", "shape", SystMap<>::init(1.00));
+
+
     //##############################################################################
     // Theoretical Uncertainties on signal
     //##############################################################################
