@@ -213,7 +213,7 @@ namespace ch {
 //            cb.cp().process(JoinStr({sig_procs, all_mc_bkgs, {"QCD"}})).bin_id({1,2,3}).channel({"em"}).AddSyst(cb,
 //                                           "CMS_scale_j_"+uncert+"_$ERA", "shape", SystMap<>::init(1.00));
 //        }
-    
+    cb.cp().process(JoinStr({sig_procs})).bin_id({1,2,3}).channel({"tt"}).AddSyst(cb,"CMS_scale_j_$ERA", "shape", SystMap<>::init(1.00));
 
 //        cb.cp().AddSyst(cb,
 //                        "CMS_htt_scale_met_$ERA", "lnN", SystMap<channel, bin_id, process>::init
