@@ -398,39 +398,56 @@ namespace ch {
 		    ({"em"},{1},{"qqH_htt"}, 0.997)
 		    ({"et"},{1},{"qqH_htt"}, 1.003)
 		    ({"mt"},{1},{"qqH_htt"}, 0.998)
-		    ({"tt"},{1},{"qqH_htt"}, 0.997)
+		    ({"tt"},{1},{"VBF"}, 0.997)
                     
 		    ({"em"},{2},{"qqH_htt"}, 1.004)
 		    ({"et"},{2},{"qqH_htt"}, 1.004)
 		    ({"mt"},{2},{"qqH_htt"}, 1.002)
-		    ({"tt"},{2},{"qqH_htt"}, 1.003)
+		    ({"tt"},{2},{"VBF"}, 1.003)
                     
                     
 		    ({"em"},{3},{"qqH_htt"}, 1.005)
 		    ({"et"},{3},{"qqH_htt"}, 1.005)
 		    ({"mt"},{3},{"qqH_htt"}, 1.002)
-		    ({"tt"},{3},{"qqH_htt"}, 1.003)
+		    ({"tt"},{3},{"VBF"}, 1.003)
 		    );
     
-        
-        
         
     cb.cp().AddSyst(cb, "CMS_ggH_PDF", "lnN", SystMap<channel, bin_id, process>::init
 		    ({"em"},{1},{"ggH_htt"}, 1.007)
 		    ({"et"},{1},{"ggH_htt"}, 1.007)
 		    ({"mt"},{1},{"ggH_htt"}, 1.007)
-		    ({"tt"},{1},{"ggH_htt"}, 1.009)
+		    ({"tt"},{1},{"ggH"}, 1.009)
 		    
 		    ({"em"},{2},{"ggH_htt"}, 1.007)
 		    ({"et"},{2},{"ggH_htt"}, 1.007)
 		    ({"mt"},{2},{"ggH_htt"}, 1.007)
-		    ({"tt"},{2},{"ggH_htt"}, 1.009)
+		    ({"tt"},{2},{"ggH"}, 1.009)
                     
                     
 		    ({"em"},{3},{"ggH_htt"}, 1.007)
 		    ({"et"},{3},{"ggH_htt"}, 1.007)
 		    ({"mt"},{3},{"ggH_htt"}, 1.007)
-		    ({"tt"},{3},{"ggH_htt"}, 1.009)
+		    ({"tt"},{3},{"ggH"}, 1.009)
+		    );
+
+    // D.Kim - only tt channel numbers are reliable.
+    cb.cp().AddSyst(cb, "CMS_ggH_PS", "lnN", SystMap<channel, bin_id, process>::init
+		    ({"em"},{1},{"ggH_htt"}, 1.007)
+		    ({"et"},{1},{"ggH_htt"}, 1.007)
+		    ({"mt"},{1},{"ggH_htt"}, 1.007)
+		    ({"tt"},{1},{"ggH"}, 1.015)
+		    
+		    ({"em"},{2},{"ggH_htt"}, 1.007)
+		    ({"et"},{2},{"ggH_htt"}, 1.007)
+		    ({"mt"},{2},{"ggH_htt"}, 1.007)
+		    ({"tt"},{2},{"ggH"}, 0.945)
+                    
+                    
+		    ({"em"},{3},{"ggH_htt"}, 1.007)
+		    ({"et"},{3},{"ggH_htt"}, 1.007)
+		    ({"mt"},{3},{"ggH_htt"}, 1.007)
+		    ({"tt"},{3},{"ggH"}, 1.03)
 		    );
     
     
@@ -439,23 +456,39 @@ namespace ch {
 		    ({"em"},{1},{"qqH_htt"}, 1.011)
 		    ({"et"},{1},{"qqH_htt"}, 1.005)
 		    ({"mt"},{1},{"qqH_htt"}, 1.005)
-		    ({"tt"},{1},{"qqH_htt"}, 1.008)
+		    ({"tt"},{1},{"VBF"}, 1.008)
                     
 		    ({"em"},{2},{"qqH_htt"}, 1.005)
 		    ({"et"},{2},{"qqH_htt"}, 1.002)
 		    ({"mt"},{2},{"qqH_htt"}, 1.002)
-		    ({"tt"},{2},{"qqH_htt"}, 1.003)
+		    ({"tt"},{2},{"VBF"}, 1.003)
                     
                     
 		    ({"em"},{3},{"qqH_htt"}, 1.005)
 		    ({"et"},{3},{"qqH_htt"}, 1.005)
 		    ({"mt"},{3},{"qqH_htt"}, 1.005)
-		    ({"tt"},{3},{"qqH_htt"}, 1.005)
+		    ({"tt"},{3},{"VBF"}, 1.005)
 		    );
-    
-        
-    
-    
+
+    cb.cp().AddSyst(cb, "CMS_qqH_PS", "lnN", SystMap<channel, bin_id, process>::init
+		    ({"em"},{1},{"qqH_htt"}, 1.011)
+		    ({"et"},{1},{"qqH_htt"}, 1.005)
+		    ({"mt"},{1},{"qqH_htt"}, 1.005)
+		    ({"tt"},{1},{"VBF"}, 1.015)
+                    
+		    ({"em"},{2},{"qqH_htt"}, 1.005)
+		    ({"et"},{2},{"qqH_htt"}, 1.002)
+		    ({"mt"},{2},{"qqH_htt"}, 1.002)
+		    ({"tt"},{2},{"VBF"}, 0.945)
+                    
+		    ({"em"},{3},{"qqH_htt"}, 1.005)
+		    ({"et"},{3},{"qqH_htt"}, 1.005)
+		    ({"mt"},{3},{"qqH_htt"}, 1.005)
+		    ({"tt"},{3},{"VBF"}, 1.03)
+		    );
+
+    // D.Kim - not in SVN
+    /*
     cb.cp().AddSyst(cb, "CMS_ggH_UEPS", "lnN", SystMap<channel, bin_id, process>::init
 		    ({"em"},{1},{"ggH_htt"}, 1.015)
 		    ({"et"},{1},{"ggH_htt"}, 1.015)
@@ -493,7 +526,7 @@ namespace ch {
 		    );
     
     
-    /*
+    
       cb.cp().AddSyst(cb, "CMS_ggH_mcComp", "lnN", SystMap<channel, bin_id, process>::init
 		      ({"em"},{1},{"ggH_htt"}, 0.95)
 		      ({"et"},{1},{"ggH_htt"}, 0.95)
@@ -542,15 +575,15 @@ namespace ch {
     cb.cp().process({"ggH_hww125","qqH_hww125"}).AddSyst(cb,"BR_hww_PU_alphas", "lnN", SystMap<>::init(1.0066));
     
         
-    cb.cp().process({"ggH_htt","ggH_hww125"}).AddSyst(cb,"QCDScale_ggH", "lnN", SystMap<>::init(1.039));
-    cb.cp().process({"qqH_htt","qqH_hww125"}).AddSyst(cb,"QCDScale_qqH", "lnN", SystMap<>::init(1.004));
-    cb.cp().process({"WH_htt"}).AddSyst(cb,"QCDScale_VH", "lnN", SystMap<>::init(1.007));
-    cb.cp().process({"ZH_htt"}).AddSyst(cb,"QCDScale_VH", "lnN", SystMap<>::init(1.038));
+    //cb.cp().process({"ggH","ggH_hww125"}).AddSyst(cb,"QCDScale_ggH", "lnN", SystMap<>::init(1.039));
+    cb.cp().process({"VBF","qqH_hww125"}).AddSyst(cb,"QCDScale_qqH", "lnN", SystMap<>::init(1.004));
+    cb.cp().process({"WH"}).AddSyst(cb,"QCDscale_VH", "lnN", SystMap<>::init(1.007));
+    cb.cp().process({"ZH"}).AddSyst(cb,"QCDscale_VH", "lnN", SystMap<>::init(1.038));
     
-    cb.cp().process({"ggH_htt","ggH_hww125"}).AddSyst(cb,"pdf_Higgs_gg", "lnN", SystMap<>::init(1.032));
-    cb.cp().process({"qqH_htt","qqH_hww125"}).AddSyst(cb,"pdf_Higgs_qq", "lnN", SystMap<>::init(1.021));
-    cb.cp().process({"WH_htt"}).AddSyst(cb,"pdf_Higgs_VH", "lnN", SystMap<>::init(1.019));
-    cb.cp().process({"ZH_htt"}).AddSyst(cb,"pdf_Higgs_VH", "lnN", SystMap<>::init(1.016));
+    cb.cp().process({"ggH","ggH_hww125"}).AddSyst(cb,"pdf_Higgs_gg", "lnN", SystMap<>::init(1.032));
+    cb.cp().process({"VBF","qqH_hww125"}).AddSyst(cb,"pdf_Higgs_qqbar", "lnN", SystMap<>::init(1.021));
+    cb.cp().process({"WH"}).AddSyst(cb,"pdf_Higgs_qqbar", "lnN", SystMap<>::init(1.019));
+    cb.cp().process({"ZH"}).AddSyst(cb,"pdf_Higgs_qqbar", "lnN", SystMap<>::init(1.016));
     
     
     
@@ -663,8 +696,7 @@ namespace ch {
       cb.cp().process( {"ZL","ZTT","ZJ", "ZJ_rest", "EWKZ"}).channel({"tt"}).bin_id({3}).AddSyst(cb,"CMS_htt_zmm_norm_extrap_VBF_tt_$ERA", "lnN", SystMap<>::init(1.10));
 
       // FIXME should have EWKZ in all
-      //            cb.cp().process( {"ZL","ZTT","ZJ", "ZJ_rest", "EWKZ"}).channel({"tt"}).bin_id({3}).AddSyst(cb,
-      //                                             "CMS_htt_zmumuShape_VBF_$ERA", "shape", SystMap<>::init(1.00));
+      cb.cp().process( {"ZL","ZTT","ZJ", "ZJ_rest", "EWKZ"}).channel({"tt"}).bin_id({3}).AddSyst(cb,"CMS_htt_zmumuShape_VBF_$ERA", "shape", SystMap<>::init(1.00));
       //            cb.cp().process( {"ZL","ZTT","ZJ", "ZJ_rest", "EWKZ"}).channel({"mt","et"}).bin_id({3}).AddSyst(cb,
       //                                             "CMS_htt_zmumuShape_VBF_$ERA", "shape", SystMap<>::init(1.00));
       //            cb.cp().process( {"ZL","ZTT","ZJ", "ZJ_rest"}).channel({"em"}).bin_id({3}).AddSyst(cb,
