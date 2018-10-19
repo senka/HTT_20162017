@@ -25,19 +25,14 @@ scram b
 
 ```
 cd $CMSSW_BASE/src/CombineHarvester/HTTSM2017/shapes/USCMS/
-cp exampleInputs/2016VBFcat.root final_nominal.root
+source ComparisonRecipe.sh exampleInputs/2016VBFcat.root Test_2016VBF tt 2016
 ```
 
-2. From the same place you stored final_nominal.root, unrolling, morphing and whole extra step can be done by running this script.
-
-```source ComparisonRecipe.sh Test_2016VBF 2016```
-
-3. Repeat sept 1 and 2 with your 2nd inputfile. 
+2. Repeat sept 1 your 2nd inputfile. 
 
 ```
 cd $CMSSW_BASE/src/CombineHarvester/HTTSM2017/shapes/USCMS/
-cp exampleInputs/VBFenriched.root final_nominal.root
-source ComparisonRecipe.sh Test_VBFenriched KSU
+source ComparisonRecipe.sh exampleInputs/VBFenriched.root Test_VBFenriched tt KSU
 ```
 
 4. Compare plots nominal
