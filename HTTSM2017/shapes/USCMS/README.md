@@ -9,8 +9,8 @@ For now I prepare this instruction turnning off all systematics.
 
 ```
 export SCRAM_ARCH=slc6_amd64_gcc530
-scram pro -n CombHarvester_8_1_0 CMSSW CMSSW_8_1_0
-cd CombHarvester_8_1_0/src
+scram project CMSSW CMSSW_8_1_0
+cd CMSSW_8_1_0/src
 cmsenv
 git clone https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit
 git clone git@github.com:KState-HEP-HTT/CombineHarvester.git CombineHarvester
@@ -43,6 +43,5 @@ source ComparisonRecipe.sh Test_VBFenriched KSU
 4. Compare plots nominal
 
 ```
-cp ../Test_2016VBF/higgsCombinenominal_2016.MultiDimFit.mH125.root .
 python ./plot1DScan.py --main higgsCombinenominal_2016.MultiDimFit.mH125.root --POI r -o cms_output_comparison  --main-label "2016analysis"  --others 'higgsCombinenominal_KSU.MultiDimFit.mH125.root:VBFenriched:2'
 ```

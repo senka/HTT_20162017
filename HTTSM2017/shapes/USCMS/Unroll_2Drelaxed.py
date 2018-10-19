@@ -2,9 +2,25 @@
 import ROOT
 import re
 from array import array
+from optparse import OptionParser
+import sys
+
+inputfile = sys.argv[1]
+channel = sys.argv[2]
+
+parser = OptionParser()
+parser.add_option('--svn', '-s', action='store_true',
+                  default=False, dest='is_SVN',
+                  help='input is SVN datacard'
+                  )
+parser.add_option('--ztt', '-z', action='store_true',
+                  default=False, dest='is_zttMC',
+                  help='run on embedded or MC ZTT'
+                  )
+(options, args) = parser.parse_args()
 
 islog=1
-
+'''
 def add_lumi():
     lowX=0.7
     lowY=0.835
@@ -65,19 +81,30 @@ ROOT.gStyle.SetOptStat(0)
 
 c=ROOT.TCanvas("canvas","",0,0,1800,600)
 c.cd()
+'''
+file=ROOT.TFile(inputfile,"r")
+file1D=ROOT.TFile("htt_"+channel+".inputs-sm-13TeV-2D.root","recreate")
+categories=[channel+"_0jet",channel+"_boosted",channel+"_vbf"] # input dir names
+processes=["data_obs","ZTT","W","QCD","ZL","ZJ","TTT","TTJ","VV","EWKZ","ggH125","VBF125","WH125","ZH125"] # input histos
+processes_plot_bkg=["ZTT","W","QCD","ZL","ZJ","TTT","TTJ","VV","EWKZ"] # bkg processes for plot
+if options.is_SVN:
+    del categories[:]
+    del processes[:]
+    categories=["htt_"+channel+"_1_13TeV","htt_"+channel+"_2_13TeV","htt_"+channel+"_3_13TeV"]
+    processes=["data_obs","ZTT","W","QCD","ZL","ZJ","TTT","TTJ","VV","EWKZ","ggH_htt125","qqH_htt125","WH_htt125","ZH_htt125"] # input histos    
 
-file=ROOT.TFile("final_nominal.root","r")
-file1D=ROOT.TFile("htt_tt.inputs-sm-13TeV-2D.root","recreate")
+if channel == 'tt':
+    print "this is tt channel"    
+    processes.remove("VV")
+    processes.insert(8,"VVT")
+    processes.insert(9,"VVJ")
+    processes_plot_bkg.remove("VV")
+    processes_plot_bkg.insert(8,"VVT")
+    processes_plot_bkg.insert(9,"VVJ")
+cat=[channel+"_0jet",channel+"_boosted",channel+"_vbf"] # outout dir names
 
-adapt=ROOT.gROOT.GetColor(12)
-new_idx=ROOT.gROOT.GetListOfColors().GetSize() + 1
-trans=ROOT.TColor(new_idx, adapt.GetRed(), adapt.GetGreen(),adapt.GetBlue(), "",0.5)
-
-categories=["tt_0jet","tt_boosted","tt_vbf"] # input dir names
-cat=["tt_0jet","tt_boosted","tt_vbf"] # outout dir names
-processes=["data_obs","ZTT","W","QCD","ZL","ZJ","TTT","TTJ","VVT","VVJ","EWKZ","ggH125","VBF125","WH125","ZH125"] # input histos
-
-
+systematics=[] # systematics
+'''
 systematics=[ # systematics
     "_CMS_htt_dyShape_13TeV",
     "_CMS_htt_jetToTauFake_13TeV",
@@ -91,12 +118,14 @@ systematics=[ # systematics
     "_CMS_scale_j_13TeV",
     "_CMS_htt_zmumuShape_VBF_13TeV"
     ]
+'''
 
 
-processes_plot_bkg=["ZTT","W","QCD","ZL","ZJ","TTT","TTJ","VVT","VVJ","EWKZ"] # bkg processes for plot
 processes_plot_signal=["ggH125","VBF125",] # signal processes for plot
 ncat=3
-
+adapt=ROOT.gROOT.GetColor(12)
+new_idx=ROOT.gROOT.GetListOfColors().GetSize() + 1
+trans=ROOT.TColor(new_idx, adapt.GetRed(), adapt.GetGreen(),adapt.GetBlue(), "",0.5)
 for i in range (0,ncat): # loop over categories
     mydir=file1D.mkdir(cat[i])
 
@@ -107,7 +136,17 @@ for i in range (0,ncat): # loop over categories
         nx=histo2D.GetXaxis().GetNbins()
         ny=histo2D.GetYaxis().GetNbins()
         histo=ROOT.TH1F("histo",histo2D.GetName(),nx*ny,0,nx*ny)
-        histo.SetName(histo2D.GetName())
+        histo.SetName(histo2D.GetName())    
+        if options.is_SVN:
+            if histo2D.GetName()=="ggH_htt125":
+                histo.SetName("ggH125")
+            if histo2D.GetName()=="qqH_htt125":
+                histo.SetName("VBF125")
+            if histo2D.GetName()=="WH_htt125":
+                histo.SetName("WH125")
+            if histo2D.GetName()=="ZH_htt125":
+                histo.SetName("ZH125")
+
         l=0
         for j in range(1,nx+1):
             for k in range(1,ny+1):
