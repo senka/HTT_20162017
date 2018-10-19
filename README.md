@@ -43,7 +43,7 @@ combine txt cards and make workspace (with POI r=higgs signal strength):
     cp ../../../scripts/texName.json .
     cp ../../../scripts/plot1DScan.py .
 
-now also make workspace for tt channel where the POI is muV and muf (muV=signal strength of VBF and VH; muf=signal strength of ggH). Input: combined txt datacard tt/125/combined.txt.cmb. Output: tt/125/muVmuF_Workspace_tt.root
+now also make workspace (example for tt channel) where the POI is muV and muf (muV=signal strength of VBF and VH; muf=signal strength of ggH). Input: combined txt datacard tt/125/combined.txt.cmb. Output: tt/125/muVmuF_Workspace_tt.root
     
     combineTool.py -M T2W -m 125 -P CombineHarvester.HTTSM2017.muVmuF:muVmuF -i tt/125/combined.txt.cmb -o muVmuF_Workspace_tt.root
     
