@@ -67,9 +67,9 @@ class muVmuF(PhysicsModel):
 
 
     def getYieldScale(self,bin,process):
-        if process in ["ggH_htt",]:
+        if process in ["ggH",]:
             return 'muf'
-        if process in ["qqH_htt",]:
+        if process in ["VBF",]:
             return 'smCoupling_VBF'
         if process in ["WH",]:
             return 'smCoupling_WH'
