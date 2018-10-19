@@ -55,5 +55,26 @@ run limits (on workspace with POI r):
     combine -M MultiDimFit -m 125 --algo grid --points 51 --rMin 0 --rMax 2 cmb/125/workspace.root -n nominal_S0 -t -1 --expectSignal=1 -S 0
         # make plots:
     python ./plot1DScan.py --main higgsCombinenominal.MultiDimFit.mH125.root --POI r -o cms_output_plot_r --others 'higgsCombinenominal_S0.MultiDimFit.mH125.root:Stat Unc Only:3'
+    
+run limits (on workspace with POI muV and muf):
+
+        # run the expected limits for muV with floating muf:
+    combine --setParameterRanges muV=0.0,2.0:muf=0.0,2.0 tt/125/muVmuF_Workspace_tt.root --algo=grid -t -1 --setParameters muV=1.,muf=1. --robustFit=1 --setRobustFitAlgo=Minuit2,Migrad -P muV --floatOtherPOIs=1 -M MultiDimFit -m 125 --points 51 -n run_muV
+        # run the expected limits for muf with floating muV:
+    combine --setParameterRanges muV=0.0,2.0:muf=0.0,2.0 tt/125/muVmuF_Workspace_tt.root --algo=grid -t -1 --setParameters muV=1.,muf=1. --robustFit=1 --setRobustFitAlgo=Minuit2,Migrad -P muf --floatOtherPOIs=1 -M MultiDimFit -m 125 --points 51 -n run_muF
+        # run the expected limits for muV with floating muf, without systematics, stat uncertainties only:    
+    combine --setParameterRanges muV=0.0,2.0:muf=0.0,2.0 tt/125/muVmuF_Workspace_tt.root --algo=grid -t -1 --setParameters muV=1.,muf=1. --robustFit=1 --setRobustFitAlgo=Minuit2,Migrad -P muV --floatOtherPOIs=1 -M MultiDimFit -m 125 --points 51 -n run_muV_S0 -S 0
+        # run the expected limits for muf with floating muV, without systematics, stat uncertainties only: 
+    combine --setParameterRanges muV=0.0,2.0:muf=0.0,2.0 tt/125/muVmuF_Workspace_tt.root --algo=grid -t -1 --setParameters muV=1.,muf=1. --robustFit=1 --setRobustFitAlgo=Minuit2,Migrad -P muf --floatOtherPOIs=1 -M MultiDimFit -m 125 --points 51 -n run_muF_S0 -S 0
+        # run the expected limits for muV with muf fixed to 1:
+    combine --setParameterRanges muV=0.0,2.0:muf=0.0,2.0 tt/125/muVmuF_Workspace_tt.root --algo=grid -t -1 --setParameters muV=1.,muf=1. --robustFit=1 --setRobustFitAlgo=Minuit2,Migrad -P muV --floatOtherPOIs=0 -M MultiDimFit -m 125 --points 51 -n run_muV_fixed_muF
+        # run the expected limits for muf with muV fixed to 1:
+    combine --setParameterRanges muV=0.0,2.0:muf=0.0,2.0 tt/125/muVmuF_Workspace_tt.root --algo=grid -t -1 --setParameters muV=1.,muf=1. --robustFit=1 --setRobustFitAlgo=Minuit2,Migrad -P muf --floatOtherPOIs=0 -M MultiDimFit -m 125 --points 51 -n run_muF_fixed_muV
+        # make plots:
+    python ./plot1DScan.py --main higgsCombinerun_muV.MultiDimFit.mH125.root --main-label Expected_nominal --POI muV -o plot_muV --y-max 8. --others 'higgsCombinerun_muV_S0.MultiDimFit.mH125.root:S0:3'
+    python ./plot1DScan.py --main higgsCombinerun_muV.MultiDimFit.mH125.root --main-label Expected_nominal --POI muV -o plot_muV_fixedmuF --y-max 8. --others 'higgsCombinerun_muV_fixed_muF.MultiDimFit.mH125.root:muF_fixed:3'
+    python ./plot1DScan.py --main higgsCombinerun_muF.MultiDimFit.mH125.root --main-label Expected_nominal --POI muf -o plot_muF --y-max 8. --others 'higgsCombinerun_muF_S0.MultiDimFit.mH125.root:S0:3'
+    python ./plot1DScan.py --main higgsCombinerun_muF.MultiDimFit.mH125.root --main-label Expected_nominal --POI muf -o plot_muF_fixedmuV --y-max 8. --others 'higgsCombinerun_muF_fixed_muV.MultiDimFit.mH125.root:muF_fixed:3'
+
 
 
