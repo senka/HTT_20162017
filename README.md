@@ -22,7 +22,7 @@ Now run the limits:
 unroll 2D histos into 1D unrolled histos (input file: "final_nominal.root", output file: "htt_tt.inputs-sm-13TeV-2D.root" used as input for the limits!)
 
     cd CombineHarvester/HTTSM2017/shapes/USCMS/
-    python Unroll_2Drelaxed.py
+    python Unroll_2Drelaxed.py inputfile channel (--svn)
 
 now prepare to run the limits:
     
