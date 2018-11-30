@@ -31,6 +31,12 @@ now prepare to run the limits:
 read in all used histos and uncertainties and make root and txt datacards:
     
     MorphingSM2017 --output_folder="TestJune26" --postfix="-2D" --control_region=0 --manual_rebin=false --real_data=false --mm_fit=false --ttbar_fit=false
+    
+for FF+embedded w/o shape systematics:
+
+    MorphingSM2017_dataDriven --output_folder="TestJune26" --postfix="-2D" --control_region=0 --manual_rebin=false --real_data=false --mm_fit=false --ttbar_fit=false --embedded=true --shape_systematics=false --jetfakes=true
+
+(naming convention:"embedded","JetFakes" for tt and "jetFakes" for mt/et)
 
 add MC stat uncertainties:
     
