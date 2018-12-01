@@ -83,4 +83,6 @@ run limits (on workspace with POI muV and muf):
     python ./plot1DScan.py --main higgsCombinerun_muF.MultiDimFit.mH125.root --main-label Expected_nominal --POI muf -o plot_muF_fixedmuV --y-max 8. --others 'higgsCombinerun_muF_fixed_muV.MultiDimFit.mH125.root:muF_fixed:3'
 
 
+There is a script available to check the Up/Down histograms. The sript loops over all Up/Down histograms in input file, compares Up/Down values in every bin with nominal value and prints out any strange bins:
 
+    python testNuisances_SMH.py input.root
