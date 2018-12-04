@@ -1,5 +1,5 @@
 #!/bin/bash
-rm -r ../../bin/output/*
+rm -rf ../../bin/output/*
 mkdir ../../bin/output/combine
 cp plot.sh ../../bin/output/combine/.
 
@@ -30,9 +30,10 @@ for i in `ls ${inputfolder}/*.root`; do
     mkdir ${fileName}
     #cp ../${fileName}/higgsCombinerun_muF_fixed_muV.MultiDimFit.mH125.root ${fileName}/muF.root
     cp ../${fileName}/higgsCombinerun_muV_fixed_muF.MultiDimFit.mH125.root ${fileName}/muV.root
-
+    cd $CMSSW_BASE/src/CombineHarvester/HTTSM2017/shapes/USCMS
+    python stackPlotter_dev.py -i htt_tt.inputs-sm-13TeV-2D.root -v unroll -c tt -f -n 2016 -t ${fileName}
 done
-
+cd -
 cd ../combine
 cp ../../../scripts/texName.json .
 cp ../../../scripts/plot1DScan.py .
