@@ -1,4 +1,5 @@
 #!/bin/bash
+rm Unrolled*.pdf
 rm -rf ../../bin/output/*
 mkdir ../../bin/output/combine
 cp plot.sh ../../bin/output/combine/.
@@ -30,6 +31,10 @@ for i in `ls ${inputfolder}/*.root`; do
     mkdir ${fileName}
     #cp ../${fileName}/higgsCombinerun_muF_fixed_muV.MultiDimFit.mH125.root ${fileName}/muF.root
     cp ../${fileName}/higgsCombinerun_muV_fixed_muF.MultiDimFit.mH125.root ${fileName}/muV.root
+    cp ../${fileName}/higgsCombineinclusive.MultiDimFit.mH125.root ${fileName}/r_inclusive.root
+    cp ../${fileName}/higgsCombinevbf.MultiDimFit.mH125.root ${fileName}/r_vbf.root
+    cp ../${fileName}/higgsCombineboosted.MultiDimFit.mH125.root ${fileName}/r_boosted.root
+    cp ../${fileName}/higgsCombine0jet.MultiDimFit.mH125.root ${fileName}/r_0jet.root
     cd $CMSSW_BASE/src/CombineHarvester/HTTSM2017/shapes/USCMS
     python stackPlotter_dev.py -i htt_tt.inputs-sm-13TeV-2D.root -v unroll -c tt -f -n 2016 -t ${fileName}
 done

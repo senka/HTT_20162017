@@ -1,2 +1,7 @@
-
+echo "python ./plot1DScan.py --POI r -o $1_r_inclusive  --main $2/r_inclusive.root --main-label \"$3\" --others '$4/r_inclusive.root:$5:3'"
+echo "python ./plot1DScan.py --POI r -o $1_r_vbf  --main $2/r_vbf.root --main-label \"$3\" --others '$4/r_vbf.root:$5:3'"
+echo "python ./plot1DScan.py --POI r -o $1_r_boosted  --main $2/r_boosted.root --main-label \"$3\" --others '$4/r_boosted.root:$5:3'"
+echo "python ./plot1DScan.py --POI r -o $1_r_0jet  --main $2/r_0jet.root --main-label \"$3\" --others '$4/r_0jet.root:$5:3'"
+echo ""
+echo ""
 echo "python ./plot1DScan.py --POI muV -o $1_muV --y-max 8. --main $2/muV.root --main-label \"$3\" --others '$4/muV.root:$5:3'"

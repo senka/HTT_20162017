@@ -18,7 +18,6 @@ ROOT.gStyle.SetMarkerSize(0.7)
 NAMECOUNTER = 0
 NPX = 200
 
-
 def read(scan, param, files, chop, remove_near_min, rezero,
          remove_delta=None, improve=False, remove_dups=True):
     print files
@@ -277,7 +276,12 @@ def BuildScan(scan, param, files, color, yvals, chop,
 parser = argparse.ArgumentParser(
     prog='plot1DScan.py',
 )
-
+parser.add_argument('--seventeen', '-s', action='store_true',
+                  default=False, help='2017 limit'
+                  )
+parser.add_argument('--category', '-c', action='store',
+                  default="inclusive", help='inclusive, 0jet, boosted and VBF'
+                  )
 parser.add_argument(
     '--no-input-label', action='store_true', help='do not draw the input label')
 parser.add_argument(
@@ -769,6 +773,7 @@ if 'atlas_' in args.output:
     collab = 'ATLAS'
 
 subtext = '{#bf{Preliminary}}'
+subtext += '  ('+args.category+')'
 if args.pub:
     subtext = '{#it{LHC} #bf{Run 1}}'
     # subtext = '#it{#splitline{LHC Run 1}{Internal}}'
@@ -795,9 +800,14 @@ if args.POI_line is not None:
     if args.legend_pos == 8:
         POI_line = '#scale[1.0]{#splitline{['+ ', '.join(POIs[:5]) + ',}{' + ', '.join(POIs[5:]) + ']}}'
 
+toptag="#bf{H#rightarrow#tau_{h}#tau_{h} "
+if args.seventeen:
+    toptag+="41.5 fb^{-1} (13 TeV)}"
+else:
+    toptag+="35.9 fb^{-1} (13 TeV)}"  
 
 if not args.no_input_label:
-    plot.DrawTitle(pads[0], '#bf{H#rightarrow#tau#tau 35.9 fb^{-1} (13 TeV)}', 3)
+    plot.DrawTitle(pads[0],toptag, 3)
 # legend_l = 0.70 if len(args) >= 4 else 0.73
 
 
