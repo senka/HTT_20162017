@@ -85,13 +85,19 @@ c.cd()
 file=ROOT.TFile(inputfile,"r")
 file1D=ROOT.TFile("htt_"+channel+".inputs-sm-13TeV-2D.root","recreate")
 categories=[channel+"_0jet",channel+"_boosted",channel+"_vbf"] # input dir names
-processes=["data_obs","ZTT","W","QCD","ZL","ZJ","TTT","TTJ","VV","EWKZ","ggH125","VBF125","WH125","ZH125"] # input histos
-processes_plot_bkg=["ZTT","W","QCD","ZL","ZJ","TTT","TTJ","VV","EWKZ"] # bkg processes for plot
+processes=["data_obs","embedded","W","QCD","ZL","ZJ","TTT","TTJ","VV","EWKZ","ggH125","VBF125","WH125","ZH125","JetFakes"] # input histos
+processes_plot_bkg=["embedded","W","QCD","ZL","ZJ","TTT","TTJ","VV","EWKZ"] # bkg processes for plot
 if options.is_SVN:
     del categories[:]
     del processes[:]
     categories=["htt_"+channel+"_1_13TeV","htt_"+channel+"_2_13TeV","htt_"+channel+"_3_13TeV"]
     processes=["data_obs","ZTT","W","QCD","ZL","ZJ","TTT","TTJ","VV","EWKZ","ggH_htt125","qqH_htt125","WH_htt125","ZH_htt125"] # input histos    
+
+if options.is_zttMC:
+    del processes[:]
+    del processes_plot_bkg[:]
+    processes=["data_obs","ZTT","W","QCD","ZL","ZJ","TTT","TTJ","VV","EWKZ","ggH125","VBF125","WH125","ZH125"] # input histos    
+    processes_plot_bkg=["ZTT","W","QCD","ZL","ZJ","TTT","TTJ","VV","EWKZ"]
 
 if channel == 'tt':
     print "this is tt channel"    
@@ -101,6 +107,12 @@ if channel == 'tt':
     processes_plot_bkg.remove("VV")
     processes_plot_bkg.insert(8,"VVT")
     processes_plot_bkg.insert(9,"VVJ")
+
+if channel == 'et':
+    print "this is tt channel"
+    processes.remove("embedded")
+    processes.insert(2,"ZTT")
+
 cat=[channel+"_0jet",channel+"_boosted",channel+"_vbf"] # outout dir names
 
 systematics=[] # systematics
@@ -146,7 +158,12 @@ for i in range (0,ncat): # loop over categories
                 histo.SetName("WH125")
             if histo2D.GetName()=="ZH_htt125":
                 histo.SetName("ZH125")
+            if histo2D.GetName()=="ZTT":
+                histo.SetName("embedded")
+        if histo2D.GetName()=="ZTT":
+            histo.SetName("embedded")
 
+        #print " in histo: ",histo2D.GetName(), 
         l=0
         for j in range(1,nx+1):
             for k in range(1,ny+1):
